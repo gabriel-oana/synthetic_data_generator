@@ -1,0 +1,71 @@
+{
+  "format": "csv",
+  "file_name": "test-file-name",
+  "separator": ",",
+  "seed": 50,
+  "columns": [
+    {
+      "name": "column_1",
+      "type": "string",
+      "null_probability": 0,
+      "unique": false,
+      "locale": "en-US",
+      "seed": 1,
+      "args": {
+        "min_chars": 8,
+        "max_chars": 16
+      }
+    },
+    {
+      "name": "column_2",
+      "type": "random_element",
+      "null_probability": 0,
+      "unique": false,
+      "seed": 1,
+      "args": {
+        "elements": ["A","B","C"]
+      }
+    },
+    {
+      "name": "column_3",
+      "type": "numeric_id",
+      "null_probability": 0,
+      "unique": false,
+      "seed": 1,
+      "args": {
+        "length": 8
+      }
+    },
+    {
+      "name": "column_4",
+      "type": "integer",
+      "null_probability": 0,
+      "unique": false,
+      "seed": 1,
+      "args": {
+        "min_value": -1000,
+        "max_value": 1000
+      }
+    },
+    {
+      "name": "column_5",
+      "type": "date",
+      "null_probability": 0,
+      "unique": false,
+      "seed": 1,
+      "args": {
+        "pattern": "%Y-%m-%d %H:%M:%S"
+      }
+    },
+    {
+      "name": "column_6",
+      "type": "date",
+      "null_probability": 0,
+      "unique": false,
+      "seed": 1,
+      "args": {
+        "pattern": "%Y-%m-%d"
+      }
+    }
+  ]
+}
