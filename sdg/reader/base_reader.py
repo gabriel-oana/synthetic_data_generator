@@ -6,4 +6,3 @@ class BaseReader(ABC):
     @abstractmethod
     def read(self, *args, **kwargs):
         pass
-

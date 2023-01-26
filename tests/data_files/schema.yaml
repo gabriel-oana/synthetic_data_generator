@@ -16,7 +16,7 @@ columns:
 
   - name: column_2
     type: random_element
-    null_probability: 0
+    null_probability: 0.3
     unique: false
     seed: 1
     args:
@@ -54,4 +54,3 @@ columns:
     seed: 1
     args:
       pattern: "%Y-%m-%d"
-

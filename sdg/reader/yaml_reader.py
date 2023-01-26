@@ -14,7 +14,7 @@ class YAMLReader(BaseReader):
         return ''.join([str(i) for i in seq])
 
     def read(self, file: str):
-        with open(file, "r") as stream:
+        with open(file, "r", encoding='utf-8') as stream:
             try:
                 yaml.add_constructor("!join", self.yaml_join)
                 yaml_object = yaml.unsafe_load(stream)

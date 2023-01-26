@@ -14,7 +14,7 @@ class JSONReader(BaseReader):
         return ''.join([str(i) for i in seq])
 
     def read(self, file: str):
-        with open(file, "r") as stream:
+        with open(file, "r", encoding='utf-8') as stream:
             metadata = json.loads(stream.read())
 
         return metadata

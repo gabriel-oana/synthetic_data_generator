@@ -93,9 +93,3 @@ class Metadata:
 
         # Set up column names
         self.column_names = [column.name for column in self.columns]
-
-
-
-
-
-

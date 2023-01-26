@@ -9,19 +9,19 @@ class Row:
         row_values = []
         if len(metadata.columns) == 0:
             raise ValueError("Columns are not set")
-        else:
-            for column in metadata.columns:
-                if column.null_probability > 0:
-                    if self._should_be_null(null_probability=column.null_probability, faker=column.faker):
-                        row_values.append(None)
-                    else:
-                        value = column.faker_callable(**column.args)
-                        row_values.append(value)
 
+        for column in metadata.columns:
+            if column.null_probability > 0:
+                if self._should_be_null(null_probability=column.null_probability, faker=column.faker):
+                    row_values.append(None)
                 else:
                     value = column.faker_callable(**column.args)
                     row_values.append(value)
-            return row_values
+
+            else:
+                value = column.faker_callable(**column.args)
+                row_values.append(value)
+        return row_values
 
     @staticmethod
     def _should_be_null(null_probability: float, faker: Faker):

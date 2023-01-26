@@ -19,4 +19,3 @@ class FakerFactory:
 
     def register_provider(self, provider):
         self.faker.add_provider(provider)
-

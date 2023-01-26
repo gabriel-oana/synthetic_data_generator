@@ -7,6 +7,5 @@ class LocalDump(BaseDump):
         """
         Writes a local csv file containing all data.
         """
-        with open(path, "w") as file:
+        with open(path, "w", encoding='utf-8') as file:
             file.write(body)
-
