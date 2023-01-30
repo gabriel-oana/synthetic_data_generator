@@ -31,7 +31,7 @@ class Performance:
     def __init__(self, iterations: int = 100000, progress: bool = True):
         self.iterations = iterations
         self.progress = progress
-        self.reports_path = '.reports/performance'
+        self.reports_path = 'reports/performance'
         self.file_name = 'performance'
 
     def __call__(self):

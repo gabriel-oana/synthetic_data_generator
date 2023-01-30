@@ -1,4 +1,5 @@
 # Synthetic Data Generator
+<img src="img/unittest.svg"> <img src="img/coverage.svg"> <img src="img/pylint.svg"> <img src="img/python.svg"> <img src="img/release.svg">
 
 - [Synthetic Data Generator](#synthetic-data-generator)
   * [1. Description](#1-description)
