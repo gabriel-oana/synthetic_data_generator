@@ -1,14 +1,17 @@
 import setuptools
 
-requires = [line.strip() for line in open("requirements.txt").readlines()]
-
 
 setuptools.setup(
     name="synthetic_data_generator",
     version="0.0.1",
     description="Synthetic Data Generator - generates CSV, JSON data using Faker",
     packages=setuptools.find_packages(),
-    python_requires='>=3.8',
+    python_requires='>=3.7',
     zip_safe=False,
-    install_requires=requires,
+    install_requires=[
+        "boto3>=1.21.23",
+        "Faker>=13.3.2",
+        "pyaml>=21.10.1",
+        "alive-progress>=2.4.0"
+    ],
 )

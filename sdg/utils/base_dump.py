@@ -5,4 +5,4 @@ class BaseDump(ABC):
 
     @abstractmethod
     def write(self, path: str, body: str):
-        pass
+        raise NotImplementedError

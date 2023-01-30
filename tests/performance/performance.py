@@ -28,11 +28,12 @@ def lap_time(f):
 
 class Performance:
 
-    def __init__(self, iterations: int = 100000, progress: bool = True):
+    def __init__(self, iterations: int = 100000, progress: bool = True, show_table: bool = True):
         self.iterations = iterations
         self.progress = progress
         self.reports_path = 'reports/performance'
         self.file_name = 'performance'
+        self.show_table = show_table
 
     def __call__(self):
         results = []
@@ -44,7 +45,8 @@ class Performance:
         for row in results:
             t.add_row(row)
         t.align["Provider"] = 'l'
-        print(t)
+        if self.show_table:
+            print(t)
 
         # Compile results
         self.compile_results(results=results)
@@ -140,7 +142,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(prog='Performance Test')
     parser.add_argument('-i', '--iterations', default=10000, type=int)
     parser.add_argument('-p', '--progress', default=False, type=bool)
+    parser.add_argument('-t', '--show_table', default=False, type=bool)
     args = parser.parse_args()
 
-    p = Performance(iterations=args.iterations, progress=args.progress)
+    p = Performance(iterations=args.iterations, progress=args.progress, show_table=args.show_table)
     p()

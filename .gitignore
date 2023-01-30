@@ -19,3 +19,5 @@ s3select_plus.egg-info
 create_files.py
 reports
 synthetic_data_generator.egg-info
+acceptance_test_files
+reports/*

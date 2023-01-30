@@ -8,7 +8,7 @@ from sdg.dto.metadata import Metadata
 class Reader:
 
     @staticmethod
-    def import_metadata(metadata: Optional[Union[Dict, Metadata]] = None) -> Metadata:
+    def import_metadata(metadata: Optional[Union[str, Dict, Metadata]] = None) -> Metadata:
         """
         Imports a file and converts it to a metadata object.
         It accepts the metadata object directly.
