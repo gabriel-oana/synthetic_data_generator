@@ -3,14 +3,15 @@ import csv
 
 from sdg.builder.builder import Builder
 from sdg.dto.metadata import Metadata
+from sdg.converter.base_converter import BaseConverter
 
 
-class CSVConverter:
+class CSVConverter(BaseConverter):
 
     def __init__(self, metadata: Metadata):
         self.metadata = metadata
 
-    def create(self, rows: int, progress: bool = True, progress_message: str = None) -> str:
+    def create(self, rows: int, progress: bool = True, progress_message: str = None, *args, **kwargs) -> str:
         """
         Creates the csv data as a string to be passed to a writer.
         """

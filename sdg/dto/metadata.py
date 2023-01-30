@@ -11,10 +11,8 @@ def lookup_type(column_type: str) -> str:
         "float": "pyfloat",
         "bool": "boolean"
     }
-    if column_type in lookup_table.keys():
-        return lookup_table[column_type]
-    else:
-        return column_type
+
+    return lookup_table[column_type] if column_type in lookup_table.keys() else column_type
 
 
 @dataclass

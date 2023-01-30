@@ -1,5 +1,5 @@
 import boto3
-from utils.base_dump import BaseDump
+from sdg.utils.base_dump import BaseDump
 
 
 class S3Dump(BaseDump):

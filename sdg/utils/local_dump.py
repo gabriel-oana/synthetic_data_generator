@@ -1,4 +1,4 @@
-from utils.base_dump import BaseDump
+from sdg.utils.base_dump import BaseDump
 
 
 class LocalDump(BaseDump):

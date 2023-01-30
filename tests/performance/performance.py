@@ -1,9 +1,14 @@
+import os
+import sys
 import time
+import json
+import argparse
 from typing import List
+from pathlib import Path
 from alive_progress import alive_it
 from prettytable import PrettyTable
 
-from sdg.synthetic_data_generator import SDG
+from sdg import SDG
 from sdg.dto.metadata import Column, Metadata
 
 
@@ -26,6 +31,8 @@ class Performance:
     def __init__(self, iterations: int = 100000, progress: bool = True):
         self.iterations = iterations
         self.progress = progress
+        self.reports_path = '.reports/performance'
+        self.file_name = 'performance'
 
     def __call__(self):
         results = []
@@ -38,6 +45,34 @@ class Performance:
             t.add_row(row)
         t.align["Provider"] = 'l'
         print(t)
+
+        # Compile results
+        self.compile_results(results=results)
+
+    def compile_results(self, results: list):
+        """
+        Compiles all the results into a report
+        """
+        # Create reports path if not exists
+        temp_path = f'{os.path.abspath("")}/{self.reports_path}'
+        if not os.path.exists(temp_path):
+            Path(temp_path).mkdir(parents=True, exist_ok=True)
+
+        python_version = f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
+        file_results = {
+            "python": python_version,
+            "data": []
+        }
+        for result in results:
+            file_results['data'].append({
+                "provider": result[0],
+                "unique_records": result[1],
+                "null_probability": result[2],
+                "time_sec": result[3]
+            })
+
+        with open(f"{temp_path}/{self.file_name}_{python_version}.json", 'w+') as f:
+            f.write(json.dumps(file_results))
 
     @lap_time
     def measure(self, column: Column):
@@ -102,5 +137,10 @@ class Performance:
 
 
 if __name__ == '__main__':
-    p = Performance(iterations=1000000)
+    parser = argparse.ArgumentParser(prog='Performance Test')
+    parser.add_argument('-i', '--iterations', default=10000, type=int)
+    parser.add_argument('-p', '--progress', default=False, type=bool)
+    args = parser.parse_args()
+
+    p = Performance(iterations=args.iterations, progress=args.progress)
     p()

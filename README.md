@@ -406,6 +406,32 @@ Performance on generating 1 million records shown below.
 | String - Phone Number   | False            | 0.3                | 8.264                  |
 
 
+### 7.3 Virtual envs
+To make tox work with all the python virtual environments one can use `pyenv`
+
+```shell
+# Install pyenv
+curl https://pyenv.run | bash
+
+# Add this to either .profile or .bashrc or .zshrc (whichever one you use)
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# Restart the terminal shell or 
+source ~/.zshrc
+
+# Install the python versions that you require. In this case:
+pyenv install 3.8.16 3.9.16 3.10.9 3.11.1
+
+# Initialise the local python versions to be used with tox
+pyenv local 3.8.16 3.9.16 3.10.9 3.11.1
+
+# Run tox
+tox
+```
+
+
 ## 8 Performance Improvements Tips
 * Do not use "unique=True" unless absolutely necessary.
 * Do not use the date formats sparingly. Sometimes having a string being generated instead of a date is much faster.

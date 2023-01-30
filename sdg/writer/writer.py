@@ -2,6 +2,8 @@ import boto3
 from sdg.dto.metadata import Metadata
 from sdg.writer.csv_writer import CSVWriter
 from sdg.writer.json_writer import JSONWriter
+from sdg.converter.json_converter import JSONConverter
+from sdg.converter.csv_converter import CSVConverter
 
 
 class Writer:
@@ -29,7 +31,8 @@ class Writer:
         """
         Entry point to write csv.
         """
-        csv_writer = CSVWriter(metadata=self.metadata, path=path, s3_client=self.s3_client)
+        converter = CSVConverter(metadata=self.metadata)
+        csv_writer = CSVWriter(metadata=self.metadata, path=path, s3_client=self.s3_client, converter=converter)
         csv_writer.write(rows=rows, progress=progress, batch_size=batch_size, use_batches=use_batches,
                          desired_size=desired_size)
 
@@ -38,6 +41,7 @@ class Writer:
         """
         Entry point to write JSON.
         """
-        json_writer = JSONWriter(metadata=self.metadata, path=path, s3_client=self.s3_client)
+        converter = JSONConverter(metadata=self.metadata)
+        json_writer = JSONWriter(metadata=self.metadata, path=path, s3_client=self.s3_client, converter=converter)
         json_writer.write(rows=rows, progress=progress, batch_size=batch_size, use_batches=use_batches,
                           desired_size=desired_size, orient=orient)
