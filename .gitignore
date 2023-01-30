@@ -17,4 +17,5 @@ s3select_plus.egg-info
 .coverage
 .coverage.Gabriels-MBP*
 create_files.py
-.reports
+reports
+synthetic_data_generator.egg-info
