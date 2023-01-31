@@ -27,7 +27,7 @@ class BaseWriter(ABC):
         else:
             self.dumper = LocalDump()
 
-    def write(self, rows: int = None, desired_size: int = None, batch_size: int = 1000000, use_batches: bool = False,
+    def write(self, rows: int = None, desired_size: int = None, batch_size: int = None, use_batches: bool = False,
               progress: bool = True, orient: str = None) -> None:
         """
         Entry point for writing data in any combination.

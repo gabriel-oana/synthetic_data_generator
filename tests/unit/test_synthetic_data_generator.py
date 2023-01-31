@@ -1,6 +1,8 @@
 import os
 import glob
 import unittest
+import boto3
+import moto
 from sdg import SDG
 from sdg.dto.metadata import Metadata, Column
 
@@ -177,6 +179,81 @@ class TestSyntheticDataGenerator(unittest.TestCase):
         expected_string = '[{"col1": "gSNnzxHPebRwNaxLlXUb", "col2": "A"}]'
         self.assertEqual(sample, expected_string)
 
+    @moto.mock_s3
+    def test_write_csv_to_s3(self):
+        s3_client = boto3.client("s3", region_name="eu-west-1")
+        s3_client.create_bucket(Bucket="test-bucket", CreateBucketConfiguration={"LocationConstraint": "eu-west-1"})
 
+        sdg = SDG(metadata=self.metadata, s3_client=s3_client)
+        sdg.write(
+            path="s3://test-bucket/test.csv",
+            rows=10,
+            use_batches=False
+        )
 
+        objects = s3_client.list_objects_v2(Bucket='test-bucket')
+        number_of_files = len(objects['Contents'])
 
+        self.assertEqual(number_of_files, 1)
+
+    @moto.mock_s3
+    def test_write_csv_to_s3_in_batch(self):
+        s3_client = boto3.client("s3", region_name="eu-west-1")
+        s3_client.create_bucket(Bucket="test-bucket", CreateBucketConfiguration={"LocationConstraint": "eu-west-1"})
+
+        sdg = SDG(metadata=self.metadata, s3_client=s3_client)
+        sdg.write(
+            path="s3://test-bucket/test.csv",
+            rows=10,
+            batch_size=5,
+            use_batches=True
+        )
+
+        objects = s3_client.list_objects_v2(Bucket='test-bucket')
+        number_of_files = len(objects['Contents'])
+
+        self.assertEqual(number_of_files, 2)
+
+    @moto.mock_s3
+    def test_write_csv_to_s3_in_one_batch(self):
+        s3_client = boto3.client("s3", region_name="eu-west-1")
+        s3_client.create_bucket(Bucket="test-bucket", CreateBucketConfiguration={"LocationConstraint": "eu-west-1"})
+
+        sdg = SDG(metadata=self.metadata, s3_client=s3_client)
+        sdg.write(
+            path="s3://test-bucket/test.csv",
+            rows=10,
+            batch_size=100,
+            use_batches=True
+        )
+
+        objects = s3_client.list_objects_v2(Bucket='test-bucket')
+        number_of_files = len(objects['Contents'])
+
+        self.assertEqual(number_of_files, 1)
+
+    @moto.mock_s3
+    def test_write_json_to_s3(self):
+        s3_client = boto3.client("s3", region_name="eu-west-1")
+        s3_client.create_bucket(Bucket="test-bucket", CreateBucketConfiguration={"LocationConstraint": "eu-west-1"})
+
+        column1 = Column(
+            name='col1',
+            type='string',
+            unique=True,
+            seed=1
+        )
+
+        metadata = Metadata(
+            columns=[column1],
+            file_name='test',
+            format='json',
+        )
+
+        sdg = SDG(metadata=metadata, s3_client=s3_client)
+        sdg.write(rows=1, progress=True, json_orient='records', path="s3://test-bucket/test.json")
+
+        objects = s3_client.list_objects_v2(Bucket='test-bucket')
+        number_of_files = len(objects['Contents'])
+
+        self.assertEqual(number_of_files, 1)

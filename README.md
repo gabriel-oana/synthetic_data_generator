@@ -159,7 +159,7 @@ Similarly to the YAML metadata, this supports JSON files.
 ```
 
 #### 3.1.3 Metadata object
-If a metadata is to be provided programmatically this is a good way of providing this without having an extrnal file.
+If a metadata is to be provided programmatically this is a good way of providing this without having an external file.
 
 ```python
 from sdg import SDG
@@ -258,7 +258,7 @@ Currently, only CSV and JSON formats are implemented. Future updates will includ
 
 ### 5.5 Desired size
 Many times, one needs a file of a specific size (like 256 MB). This package can calculate roughly how many rows are 
-required to be generated in your dataset and then it will create the file with that number of rows.     
+required to be generated in your dataset, and then it will create the file with that number of rows.     
 Notice, the number of rows is omitted and instead the "desired_size" parameter is filled (in MB). 
 
 ```python
@@ -368,9 +368,9 @@ tox
 
 ### 7.2 Performance Testing
 Performance is the Achilles Heel of the Synthetic Generator. It can be slower at times due to the following reasons:
-* It is not multithreaded or parallelised in any way because:
+* It is not multithreaded or parallelized in any way because:
   * The "unique" factor cannot be enforced across all threads.
-  * The "seeding" factor does not work on multiple threads correctly. Thread 1..n will generate the same data.
+  * The "seeding" factor does not work on multiple threads correctly. Thread 1 to n will generate the same data.
 * Different generators require more work than others.
   * Generating a timestamp takes about 5 times longer than a boolean
 * Faker package implements regex in many places which is fairly slow. 
@@ -423,10 +423,10 @@ eval "$(pyenv init -)"
 source ~/.zshrc
 
 # Install the python versions that you require. In this case:
-pyenv install 3.8.16 3.9.16 3.10.9 3.11.1
+pyenv install 3.7.16 3.8.16 3.9.16 3.10.9 3.11.1
 
 # Initialise the local python versions to be used with tox
-pyenv local 3.8.16 3.9.16 3.10.9 3.11.1
+pyenv local 3.7.16 3.8.16 3.9.16 3.10.9 3.11.1
 
 # Run tox
 tox

@@ -20,11 +20,10 @@ class Writer:
         if self.metadata.format == "csv":
             self._write_csv(path=path, rows=rows, desired_size=desired_size, batch_size=batch_size,
                             use_batches=use_batches, progress=progress)
-        elif self.metadata.format == 'json':
+
+        if self.metadata.format == 'json':
             self._write_json(path=path, rows=rows, desired_size=desired_size, batch_size=batch_size,
                              use_batches=use_batches, progress=progress, orient=orient)
-        else:
-            raise NotImplementedError(f'Format {self.metadata.format} not implemented')
 
     def _write_csv(self, path: str, rows: int = None, desired_size: int = None, batch_size: int = 1000000,
                    use_batches: bool = False, progress: bool = True):

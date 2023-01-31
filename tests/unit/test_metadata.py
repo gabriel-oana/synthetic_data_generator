@@ -9,3 +9,4 @@ class TestMetadata(unittest.TestCase):
 
     def test_raises_on_incorrect_format(self):
         self.assertRaises(NotImplementedError, Metadata, file_name='', format='wrong-choice', columns=[])
+

@@ -1,20 +1,20 @@
-************* Module sdg.dto.metadata
-sdg/dto/metadata.py:15:55: C0201: Consider iterating the dictionary directly instead of calling .keys() (consider-iterating-dictionary)
-sdg/dto/metadata.py:19:0: R0902: Too many instance attributes (10/7) (too-many-instance-attributes)
+************* Module sdg.reader.json_reader
+sdg/reader/json_reader.py:7:4: W0221: Number of parameters was 3 in 'BaseReader.read' and is now 2 in overridden 'JSONReader.read' method (arguments-differ)
+sdg/reader/json_reader.py:7:4: W0221: Variadics removed in overridden 'JSONReader.read' method (arguments-differ)
 ************* Module sdg.reader.yaml_reader
 sdg/reader/yaml_reader.py:7:4: W0221: Number of parameters was 3 in 'BaseReader.read' and is now 2 in overridden 'YAMLReader.read' method (arguments-differ)
 sdg/reader/yaml_reader.py:7:4: W0221: Variadics removed in overridden 'YAMLReader.read' method (arguments-differ)
 sdg/reader/yaml_reader.py:14:16: W0707: Consider explicitly re-raising using 'raise RuntimeError(f'{exc}') from exc' (raise-missing-from)
-************* Module sdg.reader.json_reader
-sdg/reader/json_reader.py:7:4: W0221: Number of parameters was 3 in 'BaseReader.read' and is now 2 in overridden 'JSONReader.read' method (arguments-differ)
-sdg/reader/json_reader.py:7:4: W0221: Variadics removed in overridden 'JSONReader.read' method (arguments-differ)
-************* Module sdg.converter.csv_converter
-sdg/converter/csv_converter.py:14:4: W0221: Number of parameters was 3 in 'BaseConverter.create' and is now 6 in overridden 'CSVConverter.create' method (arguments-differ)
-sdg/converter/csv_converter.py:14:4: W1113: Keyword argument before variable positional arguments list in the definition of create function (keyword-arg-before-vararg)
+************* Module sdg.dto.metadata
+sdg/dto/metadata.py:15:55: C0201: Consider iterating the dictionary directly instead of calling .keys() (consider-iterating-dictionary)
+sdg/dto/metadata.py:19:0: R0902: Too many instance attributes (10/7) (too-many-instance-attributes)
 ************* Module sdg.converter.json_converter
 sdg/converter/json_converter.py:15:4: W0221: Number of parameters was 3 in 'BaseConverter.create' and is now 5 in overridden 'JSONConverter.create' method (arguments-differ)
 sdg/converter/json_converter.py:15:4: W0221: Variadics removed in overridden 'JSONConverter.create' method (arguments-differ)
+************* Module sdg.converter.csv_converter
+sdg/converter/csv_converter.py:14:4: W0221: Number of parameters was 3 in 'BaseConverter.create' and is now 6 in overridden 'CSVConverter.create' method (arguments-differ)
+sdg/converter/csv_converter.py:14:4: W1113: Keyword argument before variable positional arguments list in the definition of create function (keyword-arg-before-vararg)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.69/10 (previous run: 9.69/10, +0.00)
+Your code has been rated at 9.69/10 (previous run: 9.69/10, -0.00)
 
