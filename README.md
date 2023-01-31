@@ -346,24 +346,18 @@ columns:
 Notice how the seed number is the same for "column_2" in both yaml files. 
 The data generated for "column_2" will be identical in both datasets and can be used for joins in tables.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## 7. Testing
 
 ### 7.1 Unit Testing
 ```shell
 tox
+
+# Run individual tests
+tox -m unittest
+tox -m coverage
+tox -m performance
+tox -m acceptance
+
 ```
 
 ### 7.2 Performance Testing

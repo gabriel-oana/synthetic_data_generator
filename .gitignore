@@ -21,3 +21,4 @@ reports
 synthetic_data_generator.egg-info
 acceptance_test_files
 reports/*
+reports

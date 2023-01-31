@@ -27,7 +27,7 @@ def get_coverage_score():
 
 
 def get_python_version():
-    return ">=3.8"
+    return ">=3.7"
 
 
 def get_unittest_results():

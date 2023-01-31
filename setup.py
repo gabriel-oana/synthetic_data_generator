@@ -3,7 +3,7 @@ import setuptools
 
 setuptools.setup(
     name="synthetic_data_generator",
-    version="0.0.1",
+    version="1.0.0",
     description="Synthetic Data Generator - generates CSV, JSON data using Faker",
     packages=setuptools.find_packages(),
     python_requires='>=3.7',
